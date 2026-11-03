@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Deep forest greens: 950 is the page, 700 the institutional green */
+  --color-forest-50: #eff9f3;
+  --color-forest-100: #d9f0e2;
+  --color-forest-200: #b3e0c5;
+  --color-forest-300: #7ccb9f;
+  --color-forest-400: #3fae76;
+  --color-forest-500: #1e8c57;
+  --color-forest-600: #137044;
+  --color-forest-700: #0e5834;
+  --color-forest-800: #0a4228;
+  --color-forest-900: #06301f;
+  --color-forest-950: #031f14;
+
+  /* Gold accents */
+  --color-gold-50: #fff9e5;
+  --color-gold-100: #fbefc2;
+  --color-gold-200: #f6e08a;
+  --color-gold-300: #efcb52;
+  --color-gold-400: #e3b62a;
+  --color-gold-500: #c99a16;
+  --color-gold-600: #a67b10;
+  --color-gold-700: #7f5d0e;
+  --color-gold-800: #5b430d;
+  --color-gold-900: #3c2c0a;
+
+  --color-ivory: #f6f4ea;
+
+  /* Live status colors  */
+  --color-vacant: #3fd28a;
+  --color-vacant-soft: #8ff0be;
+  --color-occupied: #e5484d;
+  --color-occupied-soft: #ff9a96;
+
+  /* Legacy aliases so existing pages keep their look */
+  --color-brand-50: #ecf7f0;
+  --color-brand-500: #1f9d57;
+  --color-brand-700: #0b6b3a;
+  --color-brand-900: #064e2b;
+
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --animate-fade-in: fade-in 180ms ease-out both;
+  --animate-modal-in: modal-in 240ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  --animate-flash: flash 1.4s ease-out both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* One expanding ring when a room's status changes live */
+  @keyframes flash {
+    0% {
+      box-shadow: 0 0 0 0 var(--flash, rgba(255, 255, 255, 0.5));
+    }
+    100% {
+      box-shadow: 0 0 0 20px transparent;
+    }
+  }
+}
+
+/* Layered campus background: forest base, gold glow top right, green glow top left */
+@utility bg-campus {
+  background-color: var(--color-forest-950);
+  background-image:
+    radial-gradient(56rem 36rem at 88% -8%, rgb(227 182 42 / 0.16), transparent 62%),
+    radial-gradient(48rem 38rem at -8% 6%, rgb(30 140 87 / 0.32), transparent 60%),
+    linear-gradient(180deg, var(--color-forest-900) 0%, var(--color-forest-950) 70%);
+  background-attachment: fixed;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-forest-950);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--color-gold-300);
+    color: var(--color-forest-950);
+  }
+}
